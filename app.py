@@ -5,8 +5,18 @@ import os
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import request, jsonify
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 app = Flask(__name__)
+
+cloudinary.config(
+    cloud_name="dwtn2iuda",
+    api_key="284485533773761",
+    api_secret="**********"
+)
+
 UPLOAD_FOLDER = 'static/images'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -30,6 +40,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.config['SECRET_KEY'] = 'dev-secret-key' # IMPORTANT: Change this and keep it secret!
 db = SQLAlchemy(app)
+import os
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
 class Admin(db.Model):
@@ -100,17 +111,15 @@ def add_product():
         price = request.form['price']
         image_file = request.files['image']
 
-        if image_file.filename == '':
-            return "No selected file"
+        # Upload to Cloudinary
+        upload_result = cloudinary.uploader.upload(image_file)
 
-        filename = secure_filename(image_file.filename)
-        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        image_file.save(image_path)
+        image_url = upload_result['secure_url']
 
         new_product = Product(
             name=name,
             price=price,
-            image='images/' + filename
+            image=image_url
         )
 
         db.session.add(new_product)
