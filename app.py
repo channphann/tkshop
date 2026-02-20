@@ -399,15 +399,3 @@ def update_cart(id):
 def init_db():
     db.create_all()
     return "Database initialized!"
-
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-        # Create a default admin user if one doesn't exist
-        if not Admin.query.filter_by(username='admin').first():
-            hashed_password = generate_password_hash('1234', method='pbkdf2:sha256')
-            new_admin = Admin(username='admin', password=hashed_password)
-            db.session.add(new_admin)
-            db.session.commit()
-    app.run(debug=True)
