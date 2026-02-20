@@ -30,8 +30,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.config['SECRET_KEY'] = 'dev-secret-key' # IMPORTANT: Change this and keep it secret!
 db = SQLAlchemy(app)
-with app.app_context():
-    db.create_all()
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
 class Admin(db.Model):
