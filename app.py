@@ -16,6 +16,7 @@ cloudinary.config(
     api_key=os.environ.get("284485533773761"),
     api_secret=os.environ.get("VB2J3o_9KFcukeylXZTs8Da6rCI")
 )
+print(os.environ.get("CLOUDINARY_API_SECRET"))
 
 UPLOAD_FOLDER = 'static/images'
 if not os.path.exists(UPLOAD_FOLDER):
