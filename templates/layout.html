@@ -100,7 +100,11 @@
     {% endif %}
 </button>
 
-            <a href="/login" class="btn btn-outline-warning">Admin</a>
+            {% if session.get('admin') %}
+    <a href="/admin" class="btn btn-outline-warning">Admin</a>
+    <a href="/logout" class="btn btn-outline-light">Logout</a>
+{% endif %}
+
         </div>
     </div>
 </nav>
