@@ -396,6 +396,11 @@ def update_cart(id):
         "quantities": quantities
     })
 
+@app.route("/init-db")
+def init_db():
+    db.create_all()
+    return "Database initialized!"
+
 
 if __name__ == '__main__':
     with app.app_context():
