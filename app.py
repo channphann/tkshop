@@ -396,6 +396,22 @@ def update_cart(id):
     })
 
 
+@app.route("/create-admin")
+def create_admin():
+    from werkzeug.security import generate_password_hash
+
+    if not Admin.query.filter_by(username="admin").first():
+        admin = Admin(
+            username="admin",
+            password=generate_password_hash("1234")
+        )
+        db.session.add(admin)
+        db.session.commit()
+        return "Admin created!"
+    
+    return "Admin already exists!"
+
+
 # CREATE TABLES AFTER MODELS
 with app.app_context():
     db.create_all()
