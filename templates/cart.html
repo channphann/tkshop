@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">Your Shopping Cart</h2>
+
+{% if products %}
+
+<table class="table table-hover bg-white shadow">
+
+<tr class="table-dark">
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+</tr>
+
+{% for item in products %}
+
+<tr>
+    <td>{{ item.product.name }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>${{ item.subtotal }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<h4 class="text-end">Total: ${{ total }}</h4>
+
+<div class="text-end">
+    <form action="/checkout" method="POST">
+        <button class="btn btn-success btn-lg">Checkout</button>
+    </form>
+</div>
+
+{% else %}
+
+<p class="text-center">Your cart is empty.</p>
+
+{% endif %}
+
+{% endblock %}

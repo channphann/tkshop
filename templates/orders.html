@@ -1,0 +1,10 @@
+<h1>Order History</h1>
+
+{% for order in orders %}
+    <p>
+        {{ order.product_name }} -
+        ${{ order.amount }} -
+        {{ order.customer_email }} -
+        {{ order.payment_status }}
+    </p>
+{% endfor %}

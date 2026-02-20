@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Admin Panel</h2>
+
+<a href="/add" class="btn btn-primary mb-3">Add Product</a>
+<a href="/logout" class="btn btn-danger mb-3">Logout</a>
+
+<table class="table table-bordered">
+
+<tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Actions</th>
+</tr>
+
+{% for product in products %}
+
+<tr>
+    <td>{{ product.name }}</td>
+    <td>${{ product.price }}</td>
+    <td>
+        <a href="/edit-product/{{ product.id }}" class="btn btn-warning btn-sm">Edit</a>
+
+        <form action="/delete-product/{{ product.id }}" method="POST" style="display:inline;">
+            <button class="btn btn-danger btn-sm">Delete</button>
+        </form>
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
