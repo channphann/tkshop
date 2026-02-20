@@ -14,15 +14,24 @@ if not os.path.exists(UPLOAD_FOLDER):
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import os
 
-if os.environ.get("DATABASE_URL"):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+database_url = os.environ.get("DATABASE_URL")
+
+if database_url:
+    # Fix Render postgres:// issue
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+
 app.config['SECRET_KEY'] = 'dev-secret-key' # IMPORTANT: Change this and keep it secret!
 db = SQLAlchemy(app)
 
-stripe.api_key = "sk_test_XXXX"
+stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
