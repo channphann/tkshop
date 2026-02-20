@@ -17,7 +17,12 @@
 {% endblock %}
 
 {% block content %}
-
+<div style="text-align:center; padding:40px 20px;">
+    <h1>Welcome to TK Shop 👋</h1>
+    <p style="color:gray; font-size:18px;">
+        We’re excited to have you here. Explore our products and enjoy secure, easy shopping.
+    </p>
+</div>
 <h2 class="text-center mb-5 fw-bold" style="font-size:32px;">
     Featured Products
 </h2>
@@ -39,8 +44,7 @@
     onmouseout="this.style.transform='translateY(0)'"
     >
 
-        <img src="{{ url_for('static', filename=product.image) }}"
-             style="width:100%; height:320px; object-fit:cover;">
+        <img src="{{ product.image }}" width="200">
 
         <div style="padding:30px; text-align:center;">
 
