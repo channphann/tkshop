@@ -132,7 +132,7 @@ def success():
     now = datetime.now()
 
     formatted_date = now.strftime("%A, %B %d, %Y at %I:%M %p")
-
+    session.pop('cart', None)
     return render_template(
         'success.html',
         current_date=formatted_date
