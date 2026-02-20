@@ -1,28 +1,69 @@
 {% extends "layout.html" %}
 
 {% block hero %}
-<div style="
-    background: linear-gradient(135deg, #1f2a44, #3a5ba0);
-    padding: 140px 20px;
-    text-align: center;
+<!-- HERO SECTION -->
+<section style="
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 ">
-    <h1 style="font-size:60px; font-weight:700;">
-        Welcome to TK Shop
+
+    <h1 style="
+        font-size: 48px;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s ease;
+    ">
+        Powering Your Digital Future 🚀
     </h1>
-    <p style="font-size:20px; opacity:0.85;">
-        Premium Products. Modern Experience.
+
+    <p style="
+        font-size: 20px;
+        max-width: 700px;
+        margin: auto;
+        margin-bottom: 40px;
+        color: #dcdcdc;
+        animation: fadeInUp 1.2s ease;
+    ">
+        Smart technology solutions and professional digital services
+        designed to elevate your business and simplify your workflow.
     </p>
-</div>
+
+    <a href="#products" style="
+        padding: 14px 35px;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0.3s;
+    "
+    onmouseover="this.style.opacity='0.8'"
+    onmouseout="this.style.opacity='1'">
+        Explore Services
+    </a>
+
+</section>
+
+<!-- ANIMATION STYLES -->
+<style>
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
 {% endblock %}
 
 {% block content %}
-<div style="text-align:center; padding:40px 20px;">
-    <h1>Welcome to TK Shop 👋</h1>
-    <p style="color:gray; font-size:18px;">
-        We’re excited to have you here. Explore our products and enjoy secure, easy shopping.
-    </p>
-</div>
+<div id="products">
 <h2 class="text-center mb-5 fw-bold" style="font-size:32px;">
     Featured Products
 </h2>
@@ -83,6 +124,7 @@
 
 {% endfor %}
 
+</div>
 </div>
 
 {% endblock %}
