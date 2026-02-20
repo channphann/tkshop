@@ -12,9 +12,9 @@ import cloudinary.api
 app = Flask(__name__)
 
 cloudinary.config(
-    cloud_name="dwtn2iuda",
-    api_key="284485533773761",
-    api_secret="**********"
+    cloud_name=os.environ.get("dwtn2iuda"),
+    api_key=os.environ.get("284485533773761"),
+    api_secret=os.environ.get("VB2J3o_9KFcukeylXZTs8Da6rCI")
 )
 
 UPLOAD_FOLDER = 'static/images'
