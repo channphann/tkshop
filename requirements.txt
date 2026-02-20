@@ -1,5 +1,1 @@
-Flask
-Flask-SQLAlchemy
-stripe
-gunicorn
-psycopg2-binary
+FlaskFlask-SQLAlchemystripecloudinarypsycopg2-binarygunicornWerkzeug
